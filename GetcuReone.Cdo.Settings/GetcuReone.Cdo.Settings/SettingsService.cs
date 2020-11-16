@@ -57,9 +57,12 @@ namespace GetcuReone.Cdo.Settings
             throw new System.NotImplementedException();
         }
 
+        /// <inheritdoc/>
         public virtual SettingType GetSettingType(string settingTypeCode)
         {
-            throw new System.NotImplementedException();
+            CallMethodLogging(parameter: settingTypeCode);
+            var types = GetFacade<SettingContextFacade>().GetSettingTypes();
+            return ReturnLogging(types.SingleType(settingTypeCode));
         }
 
         /// <inheritdoc/>

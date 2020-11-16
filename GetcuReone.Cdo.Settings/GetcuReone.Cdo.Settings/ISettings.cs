@@ -2,6 +2,7 @@
 using GetcuReone.Cdm.Configuration.Settings.Enums;
 using GetcuReone.Cdo.Settings.Entities;
 using System.Collections.Generic;
+using System.Globalization;
 
 namespace GetcuReone.Cdo.Settings
 {
@@ -10,6 +11,26 @@ namespace GetcuReone.Cdo.Settings
     /// </summary>
     public interface ISettings
     {
+        /// <summary>
+        /// Get setting types by codes.
+        /// </summary>
+        /// <param name="settingTypeCodes">setting type codes.</param>
+        /// <returns></returns>
+        List<SettingType> GetSettingTypes(IEnumerable<string> settingTypeCodes);
+
+        /// <summary>
+        /// Get setting type by code.
+        /// </summary>
+        /// <param name="settingTypeCode"></param>
+        /// <returns></returns>
+        SettingType GetSettingType(string settingTypeCode);
+
+        /// <summary>
+        /// Get all settig types.
+        /// </summary>
+        /// <returns></returns>
+        List<SettingType> GetSettingTypes();
+
         /// <summary>
         /// Get setting context.
         /// </summary>
@@ -76,8 +97,16 @@ namespace GetcuReone.Cdo.Settings
         /// <summary>
         /// Set setting.
         /// </summary>
-        /// <param name="settingFullCode"></param>
-        /// <param name="value"></param>
+        /// <param name="settingFullCode">Full customization code.</param>
+        /// <param name="value">New setting value.</param>
         void SetSetting<TSettingValue>(string settingFullCode, TSettingValue value);
+
+        /// <summary>
+        /// Set setting.
+        /// </summary>
+        /// <param name="settingFullCode">Full customization code.</param>
+        /// <param name="value">New setting value.</param>
+        /// <param name="cultureInfo"></param>
+        void SetSetting<TSettingValue>(string settingFullCode, TSettingValue value, CultureInfo cultureInfo);
     }
 }

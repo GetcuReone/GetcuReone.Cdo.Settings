@@ -42,9 +42,12 @@ namespace GetcuReone.Cdo.Settings
             throw new System.NotImplementedException();
         }
 
-        public virtual SettingContext GetSettingContext(bool includeNamespaces)
+        /// <inheritdoc/>
+        public virtual SettingContext GetSettingContext(bool loadNamespaces)
         {
-            throw new System.NotImplementedException();
+            CallMethodLogging(loadNamespaces);
+            return ReturnNotLogging(
+                GetFacade<SettingContextFacade>().GetSettingContext(loadNamespaces));
         }
 
         public virtual List<SettingNamespace> GetSettingNamespaces(IEnumerable<string> namespaceCodes)

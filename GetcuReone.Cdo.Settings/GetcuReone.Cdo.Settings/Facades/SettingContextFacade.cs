@@ -2,6 +2,7 @@
 using GetcuReone.Cdm.Configuration.Settings;
 using GetcuReone.Cdo.File;
 using GetcuReone.Cdo.Helpers;
+using GetcuReone.Cdo.Settings.Adapters;
 using System.Collections.Generic;
 using System.Configuration;
 using System.IO;
@@ -30,6 +31,12 @@ namespace GetcuReone.Cdo.Settings.Facades
             string value = appSettings[keyConfig].Value;
             NLogger.Debug(() => $"Get setting config from confug Key <{keyConfig}>, Value <{value}>");
             return value;
+        }
+
+        private SettingsFolderAdapter GetSettingsFolderAdapter()
+        {
+            SettingsFolderAdapter.folderPath = GetValueFromConfig(ConfigKeys.SettingsFolder); ;
+            return GetAdapter<SettingsFolderAdapter>();
         }
 
         public List<SettingType> GetSettingTypes()
@@ -67,6 +74,62 @@ namespace GetcuReone.Cdo.Settings.Facades
 
                 return types;
             }
+        }
+
+        public IEnumerable<KeyValuePair<string, SettingContext>> LoadSettingContext(bool blockFiles = false)
+        {
+            string templateFileName = GetValueFromConfig(ConfigKeys.TemplateSettingFile);
+            SettingsFolderAdapter folderAdapter = GetSettingsFolderAdapter();
+            var lockerFacade = GetFacade<LockerFacade>();
+            var fileAdapter = GetAdapter<FileAdapter>();
+
+            var files = folderAdapter.GetFiles(templateFileName);
+
+            foreach (var file in files)
+            {
+                SettingContext context = null;
+
+                lockerFacade.WaitUnblock(file);
+                if (blockFiles)
+                    lockerFacade.Block(file);
+
+                lock (lockerFacade.GetLocker(file))
+                {
+                    try
+                    {
+                        using (var fileStream = fileAdapter.OpenRead(file))
+                            context = fileStream.DeserializeFromXml<SettingContext>();
+                    }
+                    catch
+                    {
+                        lockerFacade.Unblock(file);
+                        throw;
+                    }
+                }
+
+                context.Namespaces.FillFullCodes(null);
+                yield return new KeyValuePair<string, SettingContext>(file, context);
+            }
+        }
+
+        public SettingContext GetSettingContext(bool loadNamespace = false)
+        {
+            SettingContext result = null;
+            foreach (var pair in LoadSettingContext())
+            {
+                if (result == null)
+                    result = pair.Value;
+                else
+                    result.Namespaces.AddRange(pair.Value.Namespaces);
+
+                if (!loadNamespace)
+                {
+                    result.Namespaces = null;
+                    break;
+                }
+            }
+
+            return result;
         }
     }
 }

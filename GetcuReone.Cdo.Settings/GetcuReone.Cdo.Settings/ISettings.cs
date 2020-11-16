@@ -34,9 +34,9 @@ namespace GetcuReone.Cdo.Settings
         /// <summary>
         /// Get setting context.
         /// </summary>
-        /// <param name="includeNamespaces"></param>
+        /// <param name="loadNamespaces"></param>
         /// <returns>Setting context.</returns>
-        SettingContext GetSettingContext(bool includeNamespaces);
+        SettingContext GetSettingContext(bool loadNamespaces);
 
         /// <summary>
         /// Get array <see cref="SettingNamespace"/> by <paramref name="namespaceCodes"/>.

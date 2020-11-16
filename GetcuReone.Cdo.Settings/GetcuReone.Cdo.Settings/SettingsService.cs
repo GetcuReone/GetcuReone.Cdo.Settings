@@ -50,9 +50,11 @@ namespace GetcuReone.Cdo.Settings
                 GetFacade<SettingContextFacade>().GetSettingContext(loadNamespaces));
         }
 
+        /// <inheritdoc/>
         public virtual List<SettingNamespace> GetSettingNamespaces(IEnumerable<string> namespaceCodes)
         {
-            throw new System.NotImplementedException();
+            CallMethodLogging(namespaceCodes);
+            return ReturnNotLogging(GetFacade<SettingNamespaceFacade>().GetSettingNamespaces(namespaceCodes));
         }
 
         public virtual List<Setting> GetSettings(IEnumerable<string> settingFullCodes)

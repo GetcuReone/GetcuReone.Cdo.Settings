@@ -13,7 +13,7 @@ namespace GetcuReone.Cdo.Settings.Facades
     /// <summary>
     /// Facade for work with <see cref="SettingContext"/>.
     /// </summary>
-    internal class SettingContextFacade : GrFacadeBase
+    internal sealed class SettingContextFacade : GrFacadeBase
     {
         /// <inheritdoc/>
         protected override string FacadeName => nameof(SettingContextFacade);

@@ -36,14 +36,14 @@ namespace GetcuReone.Cdo.Settings
         /// </summary>
         /// <param name="loadNamespaces"></param>
         /// <returns>Setting context.</returns>
-        SettingContext GetSettingContext(bool loadNamespaces);
+        SettingContext GetContext(bool loadNamespaces);
 
         /// <summary>
         /// Get array <see cref="SettingNamespace"/> by <paramref name="namespaceCodes"/>.
         /// </summary>
         /// <param name="namespaceCodes"></param>
         /// <returns>array <see cref="SettingNamespace"/>.</returns>
-        List<SettingNamespace> GetSettingNamespaces(IEnumerable<string> namespaceCodes);
+        List<SettingNamespace> GetNamespaces(IEnumerable<string> namespaceCodes);
 
         /// <summary>
         /// Get <see cref="SettingNamespace"/> by code.

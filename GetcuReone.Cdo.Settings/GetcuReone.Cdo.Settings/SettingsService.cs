@@ -27,9 +27,11 @@ namespace GetcuReone.Cdo.Settings
             throw new System.NotImplementedException();
         }
 
+        /// <inheritdoc/>
         public virtual SettingNamespace GetNamespace(string namespaceCode)
         {
-            throw new System.NotImplementedException();
+            CallMethodLogging(parameter: namespaceCode);
+            return ReturnNotLogging(GetFacade<SettingNamespaceFacade>().GetSettingNamespaces(new List<string>(1) { namespaceCode }).Single());
         }
 
         public virtual PowerMode GetPowerModeSetting(string settingFullCode)
@@ -43,7 +45,7 @@ namespace GetcuReone.Cdo.Settings
         }
 
         /// <inheritdoc/>
-        public virtual SettingContext GetSettingContext(bool loadNamespaces)
+        public virtual SettingContext GetContext(bool loadNamespaces)
         {
             CallMethodLogging(loadNamespaces);
             return ReturnNotLogging(
@@ -51,7 +53,7 @@ namespace GetcuReone.Cdo.Settings
         }
 
         /// <inheritdoc/>
-        public virtual List<SettingNamespace> GetSettingNamespaces(IEnumerable<string> namespaceCodes)
+        public virtual List<SettingNamespace> GetNamespaces(IEnumerable<string> namespaceCodes)
         {
             CallMethodLogging(namespaceCodes);
             return ReturnNotLogging(GetFacade<SettingNamespaceFacade>().GetSettingNamespaces(namespaceCodes));

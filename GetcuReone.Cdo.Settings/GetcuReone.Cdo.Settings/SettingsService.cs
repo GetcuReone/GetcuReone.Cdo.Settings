@@ -39,9 +39,12 @@ namespace GetcuReone.Cdo.Settings
             throw new System.NotImplementedException();
         }
 
+        /// <inheritdoc/>
         public virtual Setting GetSetting(string settingFullCode)
         {
-            throw new System.NotImplementedException();
+            CallMethodLogging(parameter: settingFullCode);
+            return ReturnLogging(
+                GetFacade<SettingsFacade>().GetSettins(new List<string>(1) { settingFullCode }).Single());
         }
 
         /// <inheritdoc/>

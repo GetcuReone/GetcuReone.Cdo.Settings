@@ -5,6 +5,7 @@ using GetcuReone.Cdo.Settings.Entities;
 using GetcuReone.Cdo.Settings.Facades;
 using System.Collections.Generic;
 using System.Globalization;
+using System.Linq;
 
 namespace GetcuReone.Cdo.Settings
 {
@@ -61,9 +62,18 @@ namespace GetcuReone.Cdo.Settings
             throw new System.NotImplementedException();
         }
 
+        /// <inheritdoc/>
         public virtual List<SettingType> GetSettingTypes(IEnumerable<string> settingTypeCodes)
         {
-            throw new System.NotImplementedException();
+            CallMethodLogging(settingTypeCodes);
+
+            var types = GetFacade<SettingContextFacade>().GetSettingTypes();
+            var resilt = new List<SettingType>(settingTypeCodes.Count());
+
+            foreach (var code in settingTypeCodes)
+                resilt.Add(types.SingleType(code));
+
+            return ReturnLogging(resilt);
         }
 
         /// <inheritdoc/>

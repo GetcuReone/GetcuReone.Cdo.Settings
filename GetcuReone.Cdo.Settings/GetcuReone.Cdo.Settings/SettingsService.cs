@@ -24,7 +24,7 @@ namespace GetcuReone.Cdo.Settings
             Setting setting = GetSetting(settingFullCode);
 
             if (!setting.Type.EqualsOrdinalIgnoreCase(SettingType.Bool.Code))
-                throw CdiHelper.CreateException(SettingsErrorCode.InvalidSettingValue, $"The '{settingFullCode}' setting value is not a int.");
+                throw CdiHelper.CreateException(SettingsErrorCode.InvalidSettingValue, $"The '{settingFullCode}' setting value is not a bool.");
 
             return bool.Parse(setting.Value);
         }
@@ -53,7 +53,7 @@ namespace GetcuReone.Cdo.Settings
             Setting setting = GetSetting(settingFullCode);
 
             if (!setting.Type.EqualsOrdinalIgnoreCase(SettingType.PowerMode.Code))
-                throw CdiHelper.CreateException(SettingsErrorCode.InvalidSettingValue, $"The '{settingFullCode}' setting value is not a int.");
+                throw CdiHelper.CreateException(SettingsErrorCode.InvalidSettingValue, $"The '{settingFullCode}' setting value is not a PowerMode.");
 
             return (PowerMode)Enum.Parse(typeof(PowerMode), setting.Value, true);
         }
@@ -198,7 +198,12 @@ namespace GetcuReone.Cdo.Settings
         /// <inheritdoc/>
         public virtual string GetStringSetting(string settingFullCode)
         {
-            return GetSetting(settingFullCode).Value;
+            Setting setting = GetSetting(settingFullCode);
+
+            if (!setting.Type.EqualsOrdinalIgnoreCase(SettingType.String.Code))
+                throw CdiHelper.CreateException(SettingsErrorCode.InvalidSettingValue, $"The '{settingFullCode}' setting value is not a string.");
+
+            return setting.Value;
         }
 
         /// <inheritdoc/>

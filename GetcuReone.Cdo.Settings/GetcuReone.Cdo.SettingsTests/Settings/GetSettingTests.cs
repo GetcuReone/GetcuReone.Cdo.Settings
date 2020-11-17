@@ -133,7 +133,7 @@ namespace GetcuReone.Cdo.SettingsTests.Settings
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get bool setting.")]
-        //[Timeout(Timeouts.Second.One)]
+        [Timeout(Timeouts.Second.One)]
         public void GetBoolSettingWithInvalidTypeTestCase()
         {
             const string settingCode = "ExampleNamespaceCode.SubExampleNamespaceCode.SettingInt";

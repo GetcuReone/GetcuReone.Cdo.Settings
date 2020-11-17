@@ -78,7 +78,7 @@ namespace GetcuReone.Cdo.SettingsTests.Settings
         public void SetSettingTestCase()
         {
             const string settingFullCode = "ExampleNamespaceCode.SubExampleNamespaceCode.SettingInt";
-            const string expectedValue = "2";
+            const int expectedValue = 2;
 
             GivenCreateAdapter()
                 .When("Set setting.", adapter =>
@@ -87,7 +87,7 @@ namespace GetcuReone.Cdo.SettingsTests.Settings
                     adapter.GetSetting(settingFullCode))
                 .And("Check setting.", setting =>
                 {
-                    Assert.AreEqual(expectedValue, setting.Value);
+                    Assert.AreEqual(expectedValue.ToString(), setting.Value);
                 })
                 .Run();
         }

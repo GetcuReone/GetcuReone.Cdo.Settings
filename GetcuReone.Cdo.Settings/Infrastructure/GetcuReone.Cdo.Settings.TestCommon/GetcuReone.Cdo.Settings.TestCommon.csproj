@@ -15,4 +15,8 @@
     <ItemGroup>
         <PackageReference Include="GetcuReone.GetcuTestAdapter" Version="[1.3.0,)" />
     </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\GetcuReone.Cdo.Settings\GetcuReone.Cdo.Settings.csproj" />
+    </ItemGroup>
 </Project>

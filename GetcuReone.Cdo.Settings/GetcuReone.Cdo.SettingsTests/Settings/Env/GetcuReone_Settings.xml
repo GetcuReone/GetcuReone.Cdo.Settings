@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SettingContext>
+  <Name>Setting</Name>
+  <Description>Settings for application</Description>
+  <Namespaces>
+    <SettingNamespace Code="ExampleNamespaceCode">
+      <Name>Example namspace name</Name>
+      <Description>Description namespace</Description>
+
+      <Namespaces>
+        <SettingNamespace Code="SubExampleNamespaceCode">
+          <Name>Sub example namspace name</Name>
+          <Description>Description sub namespace</Description>
+
+          <Settings>
+            <Setting Type="int" Code="SettingInt">
+              <DefaultValue>1</DefaultValue>
+              <Name>Setting int</Name>
+              <Description>Description SettingInt</Description>
+            </Setting>
+          </Settings>
+
+        </SettingNamespace>
+      </Namespaces>
+
+      <Settings>
+        <Setting Type="bool" Code="SettingBool">
+          <DefaultValue>true</DefaultValue>
+          <Name>Setting bool</Name>
+          <Description>Description SettingBool</Description>
+        </Setting>
+
+        <Setting Type="string" Code="SettingString">
+          <DefaultValue>GetcuReone</DefaultValue>
+          <Name>Setting string</Name>
+          <Description>Description SettingString</Description>
+        </Setting>
+      </Settings>
+
+    </SettingNamespace>
+  </Namespaces>
+</SettingContext>

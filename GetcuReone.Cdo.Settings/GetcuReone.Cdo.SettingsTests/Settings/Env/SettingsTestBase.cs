@@ -5,7 +5,6 @@ using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 using System.Configuration;
-using NSpase = GetcuReone.Cdm.Configuration.Settings.SettingNamespace;
 
 namespace GetcuReone.Cdo.SettingsTests.Env
 {
@@ -25,7 +24,7 @@ namespace GetcuReone.Cdo.SettingsTests.Env
             config.Save();
         }
 
-        private List<Setting> GetAllSettings(List<NSpase> settingNamespaces)
+        private List<Setting> GetAllSettings(List<SettingNamespace> settingNamespaces)
         {
             List<Setting> settings = new List<Setting>();
 

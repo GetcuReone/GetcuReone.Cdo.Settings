@@ -7,10 +7,32 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Settings\Env\GetcuReone_Settings.tow.xml" />
+    <None Remove="Settings\Env\GetcuReone_Settings.xml" />
+    <None Remove="Settings\Env\GetcuReone_SettingTypes.xml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Settings\Env\GetcuReone_Settings.tow.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Settings\Env\GetcuReone_Settings.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Settings\Env\GetcuReone_SettingTypes.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.5.0" />
     <PackageReference Include="MSTest.TestAdapter" Version="2.1.0" />
     <PackageReference Include="MSTest.TestFramework" Version="2.1.0" />
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Infrastructure\GetcuReone.Cdo.Settings.TestCommon\GetcuReone.Cdo.Settings.TestCommon.csproj" />
   </ItemGroup>
 
 </Project>

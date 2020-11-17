@@ -17,7 +17,7 @@ namespace GetcuReone.Cdo.Settings.Facades
                 .Distinct()
                 .ToDictionary(code => code, code => false);
 
-            var result = new List<SettingNamespace>(codes.Count);
+            var result = new SettingNamespace[codes.Count];
             foreach (var pair in GetFacade<SettingContextFacade>().LoadSettingContext())
             {
                 int counter = -1;
@@ -53,7 +53,7 @@ namespace GetcuReone.Cdo.Settings.Facades
                         })
                         .ToList());
 
-            return result;
+            return result.ToList();
         }
 
         public SettingNamespace FindNamespace(List<SettingNamespace> namespaces, string namespaceCode)

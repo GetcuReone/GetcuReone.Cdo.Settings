@@ -40,7 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Infrastructure\GetcuReone.Cdo.Settings.TestCommon\GetcuReone.Cdo.Settings.TestCommon.csproj" />
+    <ProjectReference Include="..\Infrastructure\TestCommon\TestCommon.csproj" />
   </ItemGroup>
 
 </Project>

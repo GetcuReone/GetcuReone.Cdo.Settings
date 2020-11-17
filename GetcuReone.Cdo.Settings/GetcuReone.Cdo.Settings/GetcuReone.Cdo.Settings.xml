@@ -175,6 +175,12 @@
             <param name="value">New setting value.</param>
             <param name="cultureInfo"></param>
         </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.SetDefaultSettings(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Set default settings.
+            </summary>
+            <param name="settingFullCodes"></param>
+        </member>
         <member name="T:GetcuReone.Cdo.Settings.SettingsAdapter">
             <summary>
             Adapter for <see cref="T:GetcuReone.Cdo.Settings.ISettings"/>.
@@ -293,6 +299,12 @@
             <param name="value">New setting value.</param>
             <param name="cultureInfo"></param>
         </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsAdapter.SetDefaultSettings(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Set default settings.
+            </summary>
+            <param name="settingFullCodes"></param>
+        </member>
         <member name="T:GetcuReone.Cdo.Settings.SettingsErrorCode">
             <summary>
             Error codes.
@@ -379,6 +391,9 @@
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.Cdo.Settings.SettingsService.GetStringSetting(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.SetDefaultSettings(System.Collections.Generic.IEnumerable{System.String})">
             <inheritdoc/>
         </member>
     </members>

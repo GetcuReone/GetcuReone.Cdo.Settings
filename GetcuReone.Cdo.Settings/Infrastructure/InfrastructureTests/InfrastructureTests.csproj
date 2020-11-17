@@ -25,7 +25,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\GetcuReone.Cdo.Settings.TestCommon\GetcuReone.Cdo.Settings.TestCommon.csproj" />
+        <ProjectReference Include="..\TestCommon\TestCommon.csproj" />
     </ItemGroup>
 
 </Project>

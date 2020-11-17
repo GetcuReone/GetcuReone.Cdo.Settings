@@ -12,7 +12,7 @@ namespace GetcuReone.Cdo.SettingsTests.Settings
         [TestMethod]
         [TestCategory(GetcuReoneTC.Unit)]
         [Description("Get type setting by code.")]
-        //[Timeout(Timeouts.Second.One)]
+        [Timeout(Timeouts.Second.One)]
         public void GetSettingTypeByCodeTestCase()
         {
             const string code = "Integer";

@@ -14,7 +14,7 @@ namespace GetcuReone.Cdo.SettingsTests.Settings
         [TestMethod]
         [TestCategory(GetcuReoneTC.Negative), TestCategory(GetcuReoneTC.Unit)]
         [Description("Get setting context without GetcuReone_Settings_SettingsFolder in config.")]
-        [Timeout(Timeouts.Second.One)]
+        [Timeout(Timeouts.Second.Two)]
         public void GetContextWithout_GetcuReone_Settings_SettingsFolder_TestCase()
         {
             string expectedMessage = $"The configuration file does not contain application setting '{ConfigKeys.SettingsFolder}'.";

@@ -1,7 +1,7 @@
 ﻿namespace GetcuReone.Cdo.Settings.Entities
 {
     /// <summary>
-    /// Request for <see cref="ISettings.SetSettings(List{SetSettingsRequest})"/>.
+    /// Request for <see cref="ISettings.SetSettings(System.Collections.Generic.List{SetSettingsRequest})"/>.
     /// </summary>
     public sealed class SetSettingsRequest
     {

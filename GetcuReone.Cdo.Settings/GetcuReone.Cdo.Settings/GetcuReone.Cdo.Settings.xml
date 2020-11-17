@@ -1,0 +1,267 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>GetcuReone.Cdo.Settings</name>
+    </assembly>
+    <members>
+        <member name="T:GetcuReone.Cdo.Settings.ConfigKeys">
+            <summary>
+            Setting keys in the config file.
+            </summary>
+        </member>
+        <member name="F:GetcuReone.Cdo.Settings.ConfigKeys.SettingsTypesFile">
+            <summary>
+            Indicates the location of the file in which the types of settings are located.
+            </summary>
+        </member>
+        <member name="F:GetcuReone.Cdo.Settings.ConfigKeys.SettingsFolder">
+            <summary>
+            Contains the path to the folder where the settings files are located.
+            </summary>
+        </member>
+        <member name="F:GetcuReone.Cdo.Settings.ConfigKeys.TemplateSettingFile">
+            <summary>
+            Settings file name template.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.Cdo.Settings.Entities.SetSettingsRequest">
+            <summary>
+            Request for <see cref="M:GetcuReone.Cdo.Settings.ISettings.SetSettings(System.Collections.Generic.List{GetcuReone.Cdo.Settings.Entities.SetSettingsRequest})"/>.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.Cdo.Settings.Entities.SetSettingsRequest.FullCode">
+            <summary>
+            Setting full code.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.Cdo.Settings.Entities.SetSettingsRequest.Value">
+            <summary>
+            Setting value.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.Cdo.Settings.Facades.SettingContextFacade">
+            <summary>
+            Facade for work with <see cref="T:GetcuReone.Cdm.Configuration.Settings.SettingContext"/>.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.Cdo.Settings.Facades.SettingContextFacade.FacadeName">
+            <inheritdoc/>
+        </member>
+        <member name="P:GetcuReone.Cdo.Settings.Facades.SettingNamespaceFacade.FacadeName">
+            <inheritdoc/>
+        </member>
+        <member name="T:GetcuReone.Cdo.Settings.Facades.SettingsFacade">
+            <summary>
+            Facade for settings.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.Cdo.Settings.Facades.SettingsFacade.FacadeName">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.Facades.SettingsFacade.ValidateSetting(GetcuReone.Cdm.Configuration.Settings.Setting,GetcuReone.Cdm.Configuration.Settings.SettingType)">
+            <summary>
+            Check if the setting matches the type.
+            </summary>
+            <param name="setting"></param>
+            <param name="settingType"></param>
+        </member>
+        <member name="T:GetcuReone.Cdo.Settings.ISettings">
+            <summary>
+            Interface for working with settings.
+            </summary>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.GetSettingTypes(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Get setting types by codes.
+            </summary>
+            <param name="settingTypeCodes">setting type codes.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.GetSettingType(System.String)">
+            <summary>
+            Get setting type by code.
+            </summary>
+            <param name="settingTypeCode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.GetSettingTypes">
+            <summary>
+            Get all settig types.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.GetContext(System.Boolean)">
+            <summary>
+            Get setting context.
+            </summary>
+            <param name="loadNamespaces"></param>
+            <returns>Setting context.</returns>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.GetNamespaces(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Get array <see cref="T:GetcuReone.Cdm.Configuration.Settings.SettingNamespace"/> by <paramref name="namespaceCodes"/>.
+            </summary>
+            <param name="namespaceCodes"></param>
+            <returns>array <see cref="T:GetcuReone.Cdm.Configuration.Settings.SettingNamespace"/>.</returns>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.GetNamespace(System.String)">
+            <summary>
+            Get <see cref="T:GetcuReone.Cdm.Configuration.Settings.SettingNamespace"/> by code.
+            </summary>
+            <param name="namespaceCode"></param>
+            <returns><see cref="T:GetcuReone.Cdm.Configuration.Settings.SettingNamespace"/></returns>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.GetSettings(System.Collections.Generic.IEnumerable{System.String})">
+            <summary>
+            Get settings by codes.
+            </summary>
+            <param name="settingFullCodes">Full customization codes.</param>
+            <returns>Settings</returns>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.GetSetting(System.String)">
+            <summary>
+            Get setting by code.
+            </summary>
+            <param name="settingFullCode">Full customization code.</param>
+            <returns>Settings</returns>
+            <remarks>With dot separated namespace names in code.</remarks>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.GetIntSetting(System.String)">
+            <summary>
+            Get setting with <see cref="T:System.Int32"/> value.
+            </summary>
+            <param name="settingFullCode">Full customization code.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.GetBoolSetting(System.String)">
+            <summary>
+            Get setting with <see cref="T:System.Boolean"/> value.
+            </summary>
+            <param name="settingFullCode">Full customization code.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.GetPowerModeSetting(System.String)">
+            <summary>
+            Get setting with <see cref="T:GetcuReone.Cdm.Configuration.Settings.Enums.PowerMode"/> value.
+            </summary>
+            <param name="settingFullCode">Full customization code.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.GetStringSetting(System.String)">
+            <summary>
+            Get setting with <see cref="T:System.String"/> value.
+            </summary>
+            <param name="settingFullCode">Full customization code.</param>
+            <returns></returns>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.SetSettings(System.Collections.Generic.List{GetcuReone.Cdo.Settings.Entities.SetSettingsRequest})">
+            <summary>
+            Set settings.
+            </summary>
+            <param name="request"></param>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.SetSetting``1(System.String,``0)">
+            <summary>
+            Set setting.
+            </summary>
+            <param name="settingFullCode">Full customization code.</param>
+            <param name="value">New setting value.</param>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.SetSetting``1(System.String,``0,System.Globalization.CultureInfo)">
+            <summary>
+            Set setting.
+            </summary>
+            <param name="settingFullCode">Full customization code.</param>
+            <param name="value">New setting value.</param>
+            <param name="cultureInfo"></param>
+        </member>
+        <member name="T:GetcuReone.Cdo.Settings.SettingsErrorCode">
+            <summary>
+            Error codes.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.Cdo.Settings.SettingsErrorCode.InvalidConfig">
+            <summary>
+            Invalid config.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.Cdo.Settings.SettingsErrorCode.SettingTypeNotFaound">
+            <summary>
+            <see cref="T:GetcuReone.Cdm.Configuration.Settings.SettingType"/> not found.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.Cdo.Settings.SettingsErrorCode.SettingNamespaceNotFound">
+            <summary>
+            <see cref="T:GetcuReone.Cdm.Configuration.Settings.SettingNamespace"/> not found.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.Cdo.Settings.SettingsErrorCode.SettingNotFound">
+            <summary>
+            <see cref="T:GetcuReone.Cdm.Configuration.Settings.Setting"/> not found.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.Cdo.Settings.SettingsErrorCode.InvalidSettingValue">
+            <summary>
+            Invalid setting value.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.Cdo.Settings.SettingsErrorCode.InvalidSettingType">
+            <summary>
+            Invalid setting type.
+            </summary>
+        </member>
+        <member name="T:GetcuReone.Cdo.Settings.SettingsService">
+            <summary>
+            Service for working with settings.
+            </summary>
+        </member>
+        <member name="P:GetcuReone.Cdo.Settings.SettingsService.FactoryName">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.GetBoolSetting(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.GetIntSetting(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.GetNamespace(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.GetPowerModeSetting(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.GetSetting(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.GetContext(System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.GetNamespaces(System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.GetSettings(System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.GetSettingType(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.GetSettingTypes(System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.GetSettingTypes">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.SetSetting``1(System.String,``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.SetSetting``1(System.String,``0,System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.SetSettings(System.Collections.Generic.List{GetcuReone.Cdo.Settings.Entities.SetSettingsRequest})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.GetStringSetting(System.String)">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

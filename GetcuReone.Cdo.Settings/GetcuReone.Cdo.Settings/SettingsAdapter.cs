@@ -172,5 +172,14 @@ namespace GetcuReone.Cdo.Settings
         {
             CreateProxy().SetSetting(settingFullCode, value, cultureInfo);
         }
+
+        /// <summary>
+        /// Set default settings.
+        /// </summary>
+        /// <param name="settingFullCodes"></param>
+        public void SetDefaultSettings(IEnumerable<string> settingFullCodes)
+        {
+            CreateProxy().SetDefaultSettings(settingFullCodes);
+        }
     }
 }

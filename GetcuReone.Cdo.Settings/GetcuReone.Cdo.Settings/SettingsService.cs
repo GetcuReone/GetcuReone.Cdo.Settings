@@ -200,5 +200,13 @@ namespace GetcuReone.Cdo.Settings
         {
             return GetSetting(settingFullCode).Value;
         }
+
+        /// <inheritdoc/>
+        public virtual void SetDefaultSettings(IEnumerable<string> settingFullCodes)
+        {
+            CallMethodLogging(settingFullCodes);
+            GetFacade<SettingsFacade>().SetSettings(settingFullCodes.Select(code => new SetSettingsRequest { FullCode = code, NeedSetDefaultValue = true }).ToList());
+            NLogger.Info(() => "Set default settings:\n" + string.Join("\n", settingFullCodes));
+        }
     }
 }

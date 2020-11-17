@@ -115,5 +115,11 @@ namespace GetcuReone.Cdo.Settings
         /// <param name="value">New setting value.</param>
         /// <param name="cultureInfo"></param>
         void SetSetting<TSettingValue>(string settingFullCode, TSettingValue value, CultureInfo cultureInfo);
+
+        /// <summary>
+        /// Set default settings.
+        /// </summary>
+        /// <param name="settingFullCodes"></param>
+        void SetDefaultSettings(IEnumerable<string> settingFullCodes);
     }
 }

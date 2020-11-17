@@ -20,7 +20,7 @@ namespace GetcuReone.Cdo.SettingsTests.Settings
             GivenCreateAdapter()
                 .When("Get types.",adapter => 
                     adapter.GetSettingTypes())
-                .ThenAreEqual(types => types.Count, 4,
+                .ThenAreEqual(types => types.Count, 5,
                     errorMessage: "There must be 4 types.")
                 .Run();
         }

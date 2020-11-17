@@ -1,9 +1,14 @@
 ﻿using GetcuReone.Cdi;
 using GetcuReone.Cdm.Configuration.Settings;
 using GetcuReone.Cdm.Errors;
+using GetcuReone.Cdo.File;
+using GetcuReone.Cdo.Helpers;
+using GetcuReone.Cdo.Settings.Entities;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Text;
 using System.Text.RegularExpressions;
 
 namespace GetcuReone.Cdo.Settings.Facades
@@ -70,13 +75,7 @@ namespace GetcuReone.Cdo.Settings.Facades
 
             List<SettingNamespace> namespaces = GetFacade<SettingNamespaceFacade>().GetSettingNamespaces(data.Select(d => d.namespaceCode));
             var notFoundSettings = new List<string>();
-            var defaultTypes = new SettingType[]
-            {
-                SettingType.String,
-                SettingType.Int,
-                SettingType.Bool,
-                SettingType.PowerMode,
-            };
+            var defaultTypes = GetFacade<SettingContextFacade>().GetDefaultSettingTypes();
             IReadOnlyCollection<SettingType> allTypes = null;
 
             foreach (var item in data)
@@ -119,6 +118,100 @@ namespace GetcuReone.Cdo.Settings.Facades
                         .ToList());
 
             return result;
+        }
+
+        public void SetSettings(List<SetSettingsRequest> requests)
+        {
+            List<Setting> settingFormFile = GetSettins(requests.ConvertAll(s => s.FullCode));
+            var defaultTypes = GetFacade<SettingContextFacade>().GetDefaultSettingTypes();
+            List<SettingType> allTypes = null;
+
+            foreach (var item in settingFormFile)
+            {
+                var request = requests.First(s => s.FullCode.EqualsOrdinalIgnoreCase(item.FullCode));
+
+                if (request.NeedSetDefaultValue)
+                    item.Value = item.DefaultValue;
+                else
+                    item.Value = request.Value;
+
+                SettingType type = defaultTypes.SingleOrDefault(t => t.Code.EqualsOrdinalIgnoreCase(item.Type));
+
+                if (type == null)
+                {
+                    if (allTypes == null)
+                        allTypes = GetFacade<SettingContextFacade>().GetSettingTypes();
+                    type = allTypes.SingleType(item.Type);
+                }
+
+                if (request.CheckSettingType && !request.SettingType.EqualsOrdinalIgnoreCase(item.Type))
+                    throw CdiHelper.CreateException(SettingsErrorCode.InvalidSettingType, $"The setting contains an unexpected type. Expected <{request.SettingType}>, Actual <{item.Type}>.");
+
+                ValidateSetting(item, type);
+            }
+
+            var lockerFacade = GetFacade<LockerFacade>();
+
+            foreach (var pair in GetFacade<SettingContextFacade>().LoadSettingContext(true))
+            {
+                var context = pair.Value;
+                var namespaces = new List<SettingNamespace>();
+                var setSettings = new List<Setting>();
+
+                foreach (var item in settingFormFile)
+                {
+                    string[] codes = item.FullCode.Split('.');
+                    string namespaceCode = string.Join(".", codes.Take(codes.Length - 1));
+
+                    SettingNamespace nSpace = namespaces.FirstOrDefault(n => n.FullCode.EqualsOrdinalIgnoreCase(namespaceCode));
+
+                    if (nSpace == null)
+                    {
+                        nSpace = GetFacade<SettingNamespaceFacade>().FindNamespace(context.Namespaces, namespaceCode);
+
+                        if (nSpace != null)
+                        {
+                            nSpace.FullCode = namespaceCode;
+                            namespaces.Add(nSpace);
+                        }
+                    }
+
+                    if (nSpace != null)
+                    {
+                        nSpace.Settings.First(s => s.Code.EqualsOrdinalIgnoreCase(item.Code)).Value = item.Value;
+                        setSettings.Add(item);
+                        continue;
+                    }
+                }
+
+                if (setSettings.Count != 0)
+                {
+                    lock (lockerFacade.GetLocker(pair.Key))
+                    {
+                        try
+                        {
+                            using (var fileStrem = GetAdapter<FileAdapter>().Open(pair.Key, FileMode.Create))
+                            {
+                                using (var streamWriter = new StreamWriter(fileStrem, Encoding.UTF8))
+                                    context.SerializeToTextWriter(streamWriter);
+                            }
+                        }
+                        catch
+                        {
+                            lockerFacade.Unblock(pair.Key);
+                            throw;
+                        }
+                    }
+
+                    foreach (var item in setSettings)
+                        settingFormFile.Remove(item);
+                }
+
+                lockerFacade.Unblock(pair.Key);
+
+                if (settingFormFile.Count == 0)
+                    break;
+            }
         }
     }
 }

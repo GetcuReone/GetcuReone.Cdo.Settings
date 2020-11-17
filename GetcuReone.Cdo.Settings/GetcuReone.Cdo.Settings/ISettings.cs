@@ -89,6 +89,13 @@ namespace GetcuReone.Cdo.Settings
         PowerMode GetPowerModeSetting(string settingFullCode);
 
         /// <summary>
+        /// Get setting with <see cref="string"/> value.
+        /// </summary>
+        /// <param name="settingFullCode">Full customization code.</param>
+        /// <returns></returns>
+        string GetStringSetting(string settingFullCode);
+
+        /// <summary>
         /// Set settings.
         /// </summary>
         /// <param name="request"></param>

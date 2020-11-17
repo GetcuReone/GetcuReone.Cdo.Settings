@@ -76,6 +76,17 @@ namespace GetcuReone.Cdo.Settings.Facades
             }
         }
 
+        public List<SettingType> GetDefaultSettingTypes()
+        {
+            return new List<SettingType>
+            {
+                SettingType.String,
+                SettingType.Int,
+                SettingType.Bool,
+                SettingType.PowerMode,
+            };
+        }
+
         public IEnumerable<KeyValuePair<string, SettingContext>> LoadSettingContext(bool blockFiles = false)
         {
             string templateFileName = GetValueFromConfig(ConfigKeys.TemplateSettingFile);

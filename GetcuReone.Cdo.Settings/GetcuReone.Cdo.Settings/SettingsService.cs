@@ -3,6 +3,7 @@ using GetcuReone.Cdm.Configuration.Settings;
 using GetcuReone.Cdm.Configuration.Settings.Enums;
 using GetcuReone.Cdo.Settings.Entities;
 using GetcuReone.Cdo.Settings.Facades;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
@@ -17,14 +18,26 @@ namespace GetcuReone.Cdo.Settings
         /// <inheritdoc/>
         protected override string FactoryName => nameof(SettingsService);
 
+        /// <inheritdoc/>
         public virtual bool GetBoolSetting(string settingFullCode)
         {
-            throw new System.NotImplementedException();
+            Setting setting = GetSetting(settingFullCode);
+
+            if (!setting.Type.EqualsOrdinalIgnoreCase(SettingType.Bool.Code))
+                throw CdiHelper.CreateException(SettingsErrorCode.InvalidSettingValue, $"The '{settingFullCode}' setting value is not a int.");
+
+            return bool.Parse(setting.Value);
         }
 
+        /// <inheritdoc/>
         public virtual int GetIntSetting(string settingFullCode)
         {
-            throw new System.NotImplementedException();
+            Setting setting = GetSetting(settingFullCode);
+
+            if (!setting.Type.EqualsOrdinalIgnoreCase(SettingType.Int.Code))
+                throw CdiHelper.CreateException(SettingsErrorCode.InvalidSettingValue, $"The '{settingFullCode}' setting value is not a int.");
+
+            return int.Parse(setting.Value);
         }
 
         /// <inheritdoc/>
@@ -34,9 +47,15 @@ namespace GetcuReone.Cdo.Settings
             return ReturnNotLogging(GetFacade<SettingNamespaceFacade>().GetSettingNamespaces(new List<string>(1) { namespaceCode }).Single());
         }
 
+        /// <inheritdoc/>
         public virtual PowerMode GetPowerModeSetting(string settingFullCode)
         {
-            throw new System.NotImplementedException();
+            Setting setting = GetSetting(settingFullCode);
+
+            if (!setting.Type.EqualsOrdinalIgnoreCase(SettingType.PowerMode.Code))
+                throw CdiHelper.CreateException(SettingsErrorCode.InvalidSettingValue, $"The '{settingFullCode}' setting value is not a int.");
+
+            return (PowerMode)Enum.Parse(typeof(PowerMode), setting.Value, true);
         }
 
         /// <inheritdoc/>
@@ -100,19 +119,86 @@ namespace GetcuReone.Cdo.Settings
             return ReturnLogging(GetFacade<SettingContextFacade>().GetSettingTypes());
         }
 
+        /// <inheritdoc/>
         public virtual void SetSetting<TSettingValue>(string settingFullCode, TSettingValue value)
         {
-            throw new System.NotImplementedException();
+            SetSetting(settingFullCode, value, CultureInfo.InvariantCulture);
         }
 
+        /// <inheritdoc/>
         public virtual void SetSetting<TSettingValue>(string settingFullCode, TSettingValue value, CultureInfo cultureInfo)
         {
-            throw new System.NotImplementedException();
+            SetSettingsRequest request;
+
+            switch (value)
+            {
+                case string sValue:
+                    request = new SetSettingsRequest
+                    {
+                        FullCode = settingFullCode,
+                        CheckSettingType = true,
+                        NeedSetDefaultValue = false,
+                        SettingType = SettingType.String.Code,
+                        Value = sValue,
+                    };
+                    break;
+                case int sValue:
+                    request = new SetSettingsRequest
+                    {
+                        FullCode = settingFullCode,
+                        CheckSettingType = true,
+                        NeedSetDefaultValue = false,
+                        SettingType = SettingType.Int.Code,
+                        Value = sValue.ToString(cultureInfo),
+                    };
+                    break;
+                case bool sValue:
+                    request = new SetSettingsRequest
+                    {
+                        FullCode = settingFullCode,
+                        CheckSettingType = true,
+                        NeedSetDefaultValue = false,
+                        SettingType = SettingType.Bool.Code,
+                        Value = sValue.ToString(cultureInfo),
+                    };
+                    break;
+                case PowerMode sValue:
+                    request = new SetSettingsRequest
+                    {
+                        FullCode = settingFullCode,
+                        CheckSettingType = true,
+                        NeedSetDefaultValue = false,
+                        SettingType = SettingType.PowerMode.Code,
+                        Value = sValue.ToString(),
+                    };
+                    break;
+
+                default:
+                    request = new SetSettingsRequest
+                    {
+                        FullCode = settingFullCode,
+                        Value = value.ToString(),
+                    };
+                    break;
+            }
+
+            SetSettings(new List<SetSettingsRequest> { request });
         }
 
-        public void SetSettings(List<SetSettingsRequest> request)
+        /// <inheritdoc/>
+        public virtual void SetSettings(List<SetSettingsRequest> request)
         {
-            throw new System.NotImplementedException();
+            CallMethodLogging(request);
+
+            GetFacade<SettingsFacade>().SetSettings(request);
+
+            NLogger.Info(() => "Set settings:\n" + string.Join("\n", request.ConvertAll(setting => $"Code <{setting.FullCode}>, Value <{setting.Value}>")));
+        }
+
+        /// <inheritdoc/>
+        public virtual string GetStringSetting(string settingFullCode)
+        {
+            return GetSetting(settingFullCode).Value;
         }
     }
 }

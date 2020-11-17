@@ -78,7 +78,7 @@ namespace GetcuReone.Cdo.SettingsTests.Settings
 
             GivenCreateAdapter()
                 .When("Get context.", adapter
-                    => adapter.GetContext(false))
+                    => adapter.GetContext(true))
                 .ThenIsNotNull()
                 .AndAreEqual(context => context.Name, name,
                     errorMessage: "context cannot be null.")

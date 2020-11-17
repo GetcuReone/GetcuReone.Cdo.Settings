@@ -1,20 +1,16 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <SettingContext>
-  <Name>Setting</Name>
-  <Description>Settings for application</Description>
-  <Namespaces>
-    <SettingNamespace Code="NamespaceFromTowFile">
-      <Name>Example namspace name</Name>
-      <Description>Description namespace</Description>
+    <name>Setting</name>
+    <description>Settings for application</description>
 
-      <Settings>
-        <Setting Type="bool" Code="SettingBool">
-          <DefaultValue>true</DefaultValue>
-          <Name>Setting bool</Name>
-          <Description>Description SettingBool</Description>
-        </Setting>
-      </Settings>
+    <namespace code="NamespaceFromTowFile">
+        <name>Example namspace name</name>
+        <description>Description namespace</description>
 
-    </SettingNamespace>
-  </Namespaces>
+        <setting type="bool" code="SettingBool">
+            <defaultValue>true</defaultValue>
+            <name>Setting bool</name>
+            <description>Description SettingBool</description>
+        </setting>
+    </namespace>
 </SettingContext>

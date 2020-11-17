@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfSettingType>
+    <SettingType formatValue="Text" code="Integer">
+        <pattern>(^\d+$)|(^-\d+$)</pattern>
+    </SettingType>
+
+    <SettingType formatValue="Text" code="String">
+        <pattern>.*</pattern>
+    </SettingType>
+
+    <SettingType formatValue="Text" code="Int">
+        <pattern>(^\d+$)|(^-\d+$)</pattern>
+    </SettingType>
+
+    <SettingType formatValue="Enumerate" code="Bool">
+        <permissibleValue>True</permissibleValue>
+        <permissibleValue>False</permissibleValue>
+    </SettingType>
+
+    <SettingType formatValue="Enumerate" code="PowerMode">
+        <permissibleValue>On</permissibleValue>
+        <permissibleValue>Off</permissibleValue>
+    </SettingType>
+</ArrayOfSettingType>

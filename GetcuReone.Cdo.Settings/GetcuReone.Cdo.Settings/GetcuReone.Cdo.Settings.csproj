@@ -1,0 +1,63 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <RootNamespace>GetcuReone.Cdo.Settings</RootNamespace>
+        <DocumentationFile>GetcuReone.Cdo.Settings.xml</DocumentationFile>
+
+        <Authors>Itua Juel-Gaben</Authors>
+        <PackageId>GetcuReone.Cdo.Settings</PackageId>
+        <Product>GetcuReone.Cdo.Settings</Product>
+        <Description>Common domain operations for setting API.</Description>
+        <RepositoryUrl>https://github.com/GetcuReone/GetcuReone.Cdo.Settings</RepositoryUrl>
+        <RepositoryType>git</RepositoryType>
+        <PackageTags>getcureone cdo settings</PackageTags>
+        <PackageReleaseNotes></PackageReleaseNotes>
+        <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+        <PackageProjectUrl>https://github.com/GetcuReone/GetcuReone.Cdo.Settings</PackageProjectUrl>
+        <Copyright>Copyright © 2020 $(Authors)</Copyright>
+        <NeutralLanguage>en-US</NeutralLanguage>
+        <PackageLicenseFile>LICENSE.txt</PackageLicenseFile>
+
+        <IncludeSymbols>true</IncludeSymbols>
+        <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <SignAssembly>true</SignAssembly>
+        <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
+        <DelaySign>false</DelaySign>
+        <AssemblyVersion>$(majorVersion).$(minorVersion).0.0</AssemblyVersion>
+        <FileVersion>$(majorVersion).$(minorVersion).0.0</FileVersion>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <None Include="..\..\LICENSE.txt">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+        <None Include="..\..\README.md">
+            <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
+        </None>
+        <None Update="settings\gr_setting_types.xml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Pack>True</Pack>
+            <PackagePath>contentFiles\any\any</PackagePath>
+        </None>
+        <None Update="settings\gr_settings.xml">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Pack>True</Pack>
+            <PackagePath>contentFiles\any\any</PackagePath>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="GetcuReone.Cdo" Version="[1.0.0,)" />
+        <PackageReference Include="GetcuReone.Cdm" Version="[1.2.1,)" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<SettingContext>
+    <name>Setting</name>
+    <description>Settings for application</description>
+
+    <namespace code="NamespaceFromTowFile">
+        <name>Example namspace name</name>
+        <description>Description namespace</description>
+
+        <setting type="bool" code="SettingBool">
+            <defaultValue>true</defaultValue>
+            <name>Setting bool</name>
+            <description>Description SettingBool</description>
+        </setting>
+    </namespace>
+</SettingContext>

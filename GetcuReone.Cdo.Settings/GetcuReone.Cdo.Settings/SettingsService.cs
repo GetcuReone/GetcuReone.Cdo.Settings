@@ -213,5 +213,11 @@ namespace GetcuReone.Cdo.Settings
             GetFacade<SettingsFacade>().SetSettings(settingFullCodes.Select(code => new SetSettingsRequest { FullCode = code, NeedSetDefaultValue = true }).ToList());
             NLogger.Info(() => "Set default settings:\n" + string.Join("\n", settingFullCodes));
         }
+
+        /// <inheritdoc/>
+        public void ValidateSetting(Setting setting, SettingType type)
+        {
+            GetFacade<SettingsFacade>().ValidateSetting(setting, type);
+        }
     }
 }

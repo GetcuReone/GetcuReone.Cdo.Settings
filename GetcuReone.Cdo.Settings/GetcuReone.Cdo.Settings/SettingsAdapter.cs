@@ -181,5 +181,15 @@ namespace GetcuReone.Cdo.Settings
         {
             CreateProxy().SetDefaultSettings(settingFullCodes);
         }
+
+        /// <summary>
+        /// Setting validation.
+        /// </summary>
+        /// <param name="setting">Setting.</param>
+        /// <param name="type">Setting type.</param>
+        public void ValidateSetting(Setting setting, SettingType type)
+        {
+            CreateProxy().ValidateSetting(setting, type);
+        }
     }
 }

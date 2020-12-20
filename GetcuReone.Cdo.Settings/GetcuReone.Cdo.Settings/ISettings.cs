@@ -121,5 +121,12 @@ namespace GetcuReone.Cdo.Settings
         /// </summary>
         /// <param name="settingFullCodes"></param>
         void SetDefaultSettings(IEnumerable<string> settingFullCodes);
+
+        /// <summary>
+        /// Setting validation.
+        /// </summary>
+        /// <param name="setting">Setting.</param>
+        /// <param name="type">Setting type.</param>
+        void ValidateSetting(Setting setting, SettingType type);
     }
 }

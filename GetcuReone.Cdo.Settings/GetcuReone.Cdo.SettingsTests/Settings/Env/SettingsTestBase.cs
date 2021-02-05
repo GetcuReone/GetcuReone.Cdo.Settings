@@ -4,7 +4,6 @@ using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
-using System.Configuration;
 
 namespace GetcuReone.Cdo.SettingsTests.Env
 {

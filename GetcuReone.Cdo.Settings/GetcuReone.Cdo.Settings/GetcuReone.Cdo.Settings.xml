@@ -181,6 +181,13 @@
             </summary>
             <param name="settingFullCodes"></param>
         </member>
+        <member name="M:GetcuReone.Cdo.Settings.ISettings.ValidateSetting(GetcuReone.Cdm.Configuration.Settings.Setting,GetcuReone.Cdm.Configuration.Settings.SettingType)">
+            <summary>
+            Setting validation.
+            </summary>
+            <param name="setting">Setting.</param>
+            <param name="type">Setting type.</param>
+        </member>
         <member name="T:GetcuReone.Cdo.Settings.SettingsAdapter">
             <summary>
             Adapter for <see cref="T:GetcuReone.Cdo.Settings.ISettings"/>.
@@ -305,6 +312,13 @@
             </summary>
             <param name="settingFullCodes"></param>
         </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsAdapter.ValidateSetting(GetcuReone.Cdm.Configuration.Settings.Setting,GetcuReone.Cdm.Configuration.Settings.SettingType)">
+            <summary>
+            Setting validation.
+            </summary>
+            <param name="setting">Setting.</param>
+            <param name="type">Setting type.</param>
+        </member>
         <member name="T:GetcuReone.Cdo.Settings.SettingsErrorCode">
             <summary>
             Error codes.
@@ -394,6 +408,9 @@
             <inheritdoc/>
         </member>
         <member name="M:GetcuReone.Cdo.Settings.SettingsService.SetDefaultSettings(System.Collections.Generic.IEnumerable{System.String})">
+            <inheritdoc/>
+        </member>
+        <member name="M:GetcuReone.Cdo.Settings.SettingsService.ValidateSetting(GetcuReone.Cdm.Configuration.Settings.Setting,GetcuReone.Cdm.Configuration.Settings.SettingType)">
             <inheritdoc/>
         </member>
     </members>

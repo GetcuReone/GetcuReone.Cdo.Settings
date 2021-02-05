@@ -24,22 +24,5 @@ namespace GetcuReone.Cdo.SettingsTests.Settings
                     errorMessage: "There must be 4 types.")
                 .Run();
         }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Get types setting.")]
-        [Timeout(Timeouts.Second.One)]
-        public void GetTypesWithoutSettingInConfigTestCase()
-        {
-            string expectedMessage = $"The configuration file does not contain application setting '{ConfigKeys.SettingsTypesFile}'.";
-
-            GivenCreateAdapter()
-                .And("Remove setting from config", _ => 
-                    RemoveSettingInConfig(ConfigKeys.SettingsTypesFile))
-                .When("Get types", adapter =>
-                    ExpectedException<GetcuReoneException>(() => adapter.GetSettingTypes()))
-                .ThenAssertError(SettingsErrorCode.InvalidConfig, expectedMessage)
-                .Run();
-        }
     }
 }

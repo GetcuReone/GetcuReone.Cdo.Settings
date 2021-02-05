@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace GetcuReone.Cdo.Settings
+﻿namespace GetcuReone.Cdo.Settings
 {
     /// <summary>
     /// Error codes.

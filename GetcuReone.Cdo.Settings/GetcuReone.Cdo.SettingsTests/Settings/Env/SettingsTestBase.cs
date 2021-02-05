@@ -11,19 +11,6 @@ namespace GetcuReone.Cdo.SettingsTests.Env
     [TestClass]
     public abstract class SettingsTestBase : GetcuReoneTestBase
     {
-        [TestInitialize]
-        public virtual void Initialize()
-        {
-            ImportConfigFromFile(@"Settings\Env\config.xml");
-        }
-
-        protected void RemoveSettingInConfig(string settingKey)
-        {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            config.AppSettings.Settings.Remove(settingKey);
-            config.Save();
-        }
-
         private List<Setting> GetAllSettings(List<SettingNamespace> settingNamespaces)
         {
             List<Setting> settings = new List<Setting>();

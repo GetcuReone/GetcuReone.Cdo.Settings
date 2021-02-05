@@ -1,5 +1,6 @@
 ﻿using GetcuReone.Cdi;
 using GetcuReone.Cdm.Configuration.Settings;
+using GetcuReone.Cdo.Configuration;
 using GetcuReone.Cdo.File;
 using GetcuReone.Cdo.Helpers;
 using GetcuReone.Cdo.Settings.Adapters;
@@ -18,62 +19,61 @@ namespace GetcuReone.Cdo.Settings.Facades
         /// <inheritdoc/>
         protected override string FacadeName => nameof(SettingContextFacade);
 
-        private string GetValueFromConfig(string keyConfig)
-        {
-            Configuration config = ConfigurationManager.OpenExeConfiguration(ConfigurationUserLevel.None);
-            var appSettings = config.AppSettings.Settings;
-
-            if (!appSettings.AllKeys.Contains(keyConfig))
-                throw CdiHelper.CreateException(
-                    SettingsErrorCode.InvalidConfig,
-                    $"The configuration file does not contain application setting '{keyConfig}'.");
-
-            string value = appSettings[keyConfig].Value;
-            NLogger.Debug(() => $"Get setting config from confug Key <{keyConfig}>, Value <{value}>");
-            return value;
-        }
-
-        private SettingsFolderAdapter GetSettingsFolderAdapter()
-        {
-            SettingsFolderAdapter.folderPath = GetValueFromConfig(ConfigKeys.SettingsFolder); ;
-            return GetAdapter<SettingsFolderAdapter>();
-        }
-
         public List<SettingType> GetSettingTypes()
         {
-            string settingTypeFilePath = GetValueFromConfig(ConfigKeys.SettingsTypesFile);
-            using (FileStream fileStream = GetAdapter<FileAdapter>().OpenRead(settingTypeFilePath))
-            {
-                var types = fileStream.DeserializeFromXml<List<SettingType>>();
+            var settingTypeConfig = GrConfigManager.Current.Settings[GrConfigKeys.Settings.SettingTypesFile];
+            List<SettingType> result = null;
 
-                for (int i = types.Count - 1; i >= 0; i--)
+            if (settingTypeConfig != null)
+            {
+                using (FileStream fileStream = GetAdapter<FileAdapter>().OpenRead(settingTypeConfig.Value))
+                    result = fileStream.DeserializeFromXml<List<SettingType>>();
+
+                for (int i = result.Count - 1; i >= 0; i--)
                 {
-                    var type = types[i];
+                    var type = result[i];
 
                     if (type.Code.EqualsOrdinalIgnoreCase(SettingType.Int.Code))
                     {
-                        types.Remove(type);
-                        types.Insert(i, SettingType.Int);
+                        result.Remove(type);
+                        result.Insert(i, SettingType.Int);
                     }
                     else if (type.Code.EqualsOrdinalIgnoreCase(SettingType.Bool.Code))
                     {
-                        types.Remove(type);
-                        types.Insert(i, SettingType.Bool);
+                        result.Remove(type);
+                        result.Insert(i, SettingType.Bool);
                     }
                     else if (type.Code.EqualsOrdinalIgnoreCase(SettingType.String.Code))
                     {
-                        types.Remove(type);
-                        types.Insert(i, SettingType.String);
+                        result.Remove(type);
+                        result.Insert(i, SettingType.String);
                     }
                     else if (type.Code.EqualsOrdinalIgnoreCase(SettingType.PowerMode.Code))
                     {
-                        types.Remove(type);
-                        types.Insert(i, SettingType.PowerMode);
+                        result.Remove(type);
+                        result.Insert(i, SettingType.PowerMode);
                     }
                 }
 
-                return types;
+                if (!result.Contains(SettingType.Int))
+                    result.Add(SettingType.Int);
+                if (!result.Contains(SettingType.Bool))
+                    result.Add(SettingType.Bool);
+                if (!result.Contains(SettingType.String))
+                    result.Add(SettingType.String);
+                if (!result.Contains(SettingType.PowerMode))
+                    result.Add(SettingType.PowerMode);
             }
+            else
+                result = new List<SettingType>
+                {
+                    SettingType.Int,
+                    SettingType.Bool,
+                    SettingType.String,
+                    SettingType.PowerMode,
+                };
+
+            return result;
         }
 
         public List<SettingType> GetDefaultSettingTypes()
@@ -89,12 +89,14 @@ namespace GetcuReone.Cdo.Settings.Facades
 
         public IEnumerable<KeyValuePair<string, SettingContext>> LoadSettingContext(bool blockFiles = false)
         {
-            string templateFileName = GetValueFromConfig(ConfigKeys.TemplateSettingFile);
-            SettingsFolderAdapter folderAdapter = GetSettingsFolderAdapter();
+            var templateFileConfig = GrConfigManager.Current.Settings[GrConfigKeys.Settings.TemplateSettingFile];
+            if (templateFileConfig == null)
+                throw CdiHelper.CreateException(SettingsErrorCode.InvalidConfig, $"The GetcuReone.config does not contain config '{GrConfigKeys.Settings.TemplateSettingFile}'.");
+
             var lockerFacade = GetFacade<LockerFacade>();
             var fileAdapter = GetAdapter<FileAdapter>();
 
-            var files = folderAdapter.GetFiles(templateFileName);
+            var files = GetAdapter<SettingsFolderAdapter>().GetFiles(templateFileConfig.Value);
 
             foreach (var file in files)
             {

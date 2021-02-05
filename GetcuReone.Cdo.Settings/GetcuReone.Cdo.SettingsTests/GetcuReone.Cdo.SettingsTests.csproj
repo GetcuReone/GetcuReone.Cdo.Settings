@@ -7,18 +7,18 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="GetcuReone.config" />
     <None Remove="NLog.config" />
-    <None Remove="Settings\Env\config.xml" />
     <None Remove="Settings\Env\GetcuReone_Settings.tow.xml" />
     <None Remove="Settings\Env\GetcuReone_Settings.xml" />
     <None Remove="Settings\Env\GetcuReone_SettingTypes.xml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="NLog.config">
+    <Content Include="GetcuReone.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Settings\Env\config.xml">
+    <Content Include="NLog.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Settings\Env\GetcuReone_Settings.tow.xml">

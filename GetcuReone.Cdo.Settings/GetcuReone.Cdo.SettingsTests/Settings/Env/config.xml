@@ -1,7 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
-<ArrayOfConfigValue>
-    <ConfigValue Key="GetcuReone_Settings_SettingsFolder" Value="Settings\Env"/>
-    <ConfigValue Key="GetcuReone_Settings_TemplateSettingFile" Value="GetcuReone_Settings*.xml"/>
-    <ConfigValue Key="GetcuReone_Settings_SettingTypesFile" Value="Settings\Env\GetcuReone_SettingTypes.xml"/>
-    <ConfigValue Key="GetcuReone_Logging_NLog_LoggerName" Value="GR_log"/>
-</ArrayOfConfigValue>

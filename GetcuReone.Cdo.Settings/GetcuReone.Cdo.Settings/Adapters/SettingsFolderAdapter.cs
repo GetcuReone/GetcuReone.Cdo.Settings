@@ -1,15 +1,24 @@
-﻿using GetcuReone.Cdo.Folder;
+﻿using GetcuReone.Cdi;
+using GetcuReone.Cdo.Configuration;
+using GetcuReone.Cdo.Folder;
 
 namespace GetcuReone.Cdo.Settings.Adapters
 {
     internal sealed class SettingsFolderAdapter : FolderAdapterBase
     {
-        internal static string folderPath;
-
         protected override string AdapterName => nameof(SettingsFolderAdapter);
 
-        public SettingsFolderAdapter() : base(folderPath)
+        public SettingsFolderAdapter() : base(GetPathFolder())
         {
+        }
+
+        private static string GetPathFolder()
+        {
+            var config = GrConfigManager.Current.Settings[GrConfigKeys.Settings.SettingsFolder];
+            if (config == null)
+                throw CdiHelper.CreateException(SettingsErrorCode.InvalidConfig, $"The GetcuReone.config does not contain config '{GrConfigKeys.Settings.SettingsFolder}'.");
+
+            return config.Value;
         }
     }
 }

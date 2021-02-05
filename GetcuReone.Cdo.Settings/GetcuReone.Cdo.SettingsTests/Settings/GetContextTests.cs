@@ -12,40 +12,6 @@ namespace GetcuReone.Cdo.SettingsTests.Settings
     public sealed class GetContextTests : SettingsTestBase
     {
         [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Get setting context without GetcuReone_Settings_SettingsFolder in config.")]
-        [Timeout(Timeouts.Second.Two)]
-        public void GetContextWithout_GetcuReone_Settings_SettingsFolder_TestCase()
-        {
-            string expectedMessage = $"The configuration file does not contain application setting '{ConfigKeys.SettingsFolder}'.";
-
-            GivenCreateAdapter()
-                .And("Remove setting from config",
-                    _ => RemoveSettingInConfig(ConfigKeys.SettingsFolder))
-                .When("Get context.", adapter 
-                    => ExpectedException<GetcuReoneException>(() => adapter.GetContext(true)))
-                .ThenAssertError(SettingsErrorCode.InvalidConfig, expectedMessage)
-                .Run();
-        }
-
-        [TestMethod]
-        [TestCategory(GetcuReoneTC.Negative), TestCategory(GetcuReoneTC.Unit)]
-        [Description("Get setting context without GetcuReone_Settings_SettingsFolder in config.")]
-        [Timeout(Timeouts.Second.One)]
-        public void GetContextWithout_GetcuReone_Settings_TemplateSettingFile_TestCase()
-        {
-            string expectedMessage = $"The configuration file does not contain application setting '{ConfigKeys.TemplateSettingFile}'.";
-
-            GivenCreateAdapter()
-                .And("Remove setting from config",
-                    _ => RemoveSettingInConfig(ConfigKeys.TemplateSettingFile))
-                .When("Get context.", adapter
-                    => ExpectedException<GetcuReoneException>(() => adapter.GetContext(true)))
-                .ThenAssertError(SettingsErrorCode.InvalidConfig, expectedMessage)
-                .Run();
-        }
-
-        [TestMethod]
         [TestCategory(GetcuReoneTC.Unit)]
         [Description("Get setting context without namespaces.")]
         [Timeout(Timeouts.Second.One)]

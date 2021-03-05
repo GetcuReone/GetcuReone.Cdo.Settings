@@ -12,7 +12,9 @@
         <RepositoryUrl>https://github.com/GetcuReone/GetcuReone.Cdo.Settings</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>getcureone cdo settings</PackageTags>
-        <PackageReleaseNotes></PackageReleaseNotes>
+        <PackageReleaseNotes>Changes:
+        - fix assembly version 
+        </PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageProjectUrl>https://github.com/GetcuReone/GetcuReone.Cdo.Settings</PackageProjectUrl>
         <Copyright>Copyright © 2020 $(Authors)</Copyright>
@@ -28,8 +30,8 @@
         <SignAssembly>true</SignAssembly>
         <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
         <DelaySign>false</DelaySign>
-        <AssemblyVersion>$(majorVersion).$(minorVersion).0.0</AssemblyVersion>
-        <FileVersion>$(majorVersion).$(minorVersion).0.0</FileVersion>
+        <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
+        <FileVersion>$(majorVersion).0.0.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -56,8 +58,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="GetcuReone.Cdo" Version="[1.0.2,)" />
-        <PackageReference Include="GetcuReone.config" Version="[1.0.2,)" />
+        <PackageReference Include="GetcuReone.Cdo" Version="[1.0.5,)" />
+        <PackageReference Include="GetcuReone.config" Version="[1.0.4,)" />
     </ItemGroup>
 
 </Project>

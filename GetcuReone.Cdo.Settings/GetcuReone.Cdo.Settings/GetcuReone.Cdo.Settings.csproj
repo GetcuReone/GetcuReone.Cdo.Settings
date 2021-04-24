@@ -49,8 +49,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="GetcuReone.Cdo" Version="[1.0.7,)" />
-        <PackageReference Include="GetcuReone.config" Version="[1.0.4,)" />
+        <PackageReference Include="GetcuReone.Cdo" Version="[2.0.0,)" />
+        <PackageReference Include="GetcuReone.config" Version="[2.0.0,)" />
     </ItemGroup>
 
 </Project>

@@ -5,9 +5,7 @@ using GetcuReone.Cdo.File;
 using GetcuReone.Cdo.Helpers;
 using GetcuReone.Cdo.Settings.Adapters;
 using System.Collections.Generic;
-using System.Configuration;
 using System.IO;
-using System.Linq;
 
 namespace GetcuReone.Cdo.Settings.Facades
 {
@@ -21,7 +19,7 @@ namespace GetcuReone.Cdo.Settings.Facades
 
         public List<SettingType> GetSettingTypes()
         {
-            var settingTypeConfig = GrConfigManager.Current.Settings[GrConfigKeys.Settings.SettingTypesFile];
+            var settingTypeConfig = GrConfigManager.Current.Sections[GrConfigKeys.Settings.Name].Configs[GrConfigKeys.Settings.SettingTypesFile];
             List<SettingType> result = null;
 
             if (settingTypeConfig != null)
@@ -89,7 +87,7 @@ namespace GetcuReone.Cdo.Settings.Facades
 
         public IEnumerable<KeyValuePair<string, SettingContext>> LoadSettingContext(bool blockFiles = false)
         {
-            var templateFileConfig = GrConfigManager.Current.Settings[GrConfigKeys.Settings.TemplateSettingFile];
+            var templateFileConfig = GrConfigManager.Current.Sections[GrConfigKeys.Settings.Name].Configs[GrConfigKeys.Settings.TemplateSettingFile];
             if (templateFileConfig == null)
                 throw CdiHelper.CreateException(SettingsErrorCode.InvalidConfig, $"The GetcuReone.config does not contain config '{GrConfigKeys.Settings.TemplateSettingFile}'.");
 

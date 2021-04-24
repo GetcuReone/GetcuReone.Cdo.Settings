@@ -1,11 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
+    <Import Project="..\.buildTools\GetcuReone.Lib.props" />
+
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <RootNamespace>GetcuReone.Cdo.Settings</RootNamespace>
-        <DocumentationFile>GetcuReone.Cdo.Settings.xml</DocumentationFile>
-
-        <Authors>Itua Juel-Gaben</Authors>
+        
         <PackageId>GetcuReone.Cdo.Settings</PackageId>
         <Product>GetcuReone.Cdo.Settings</Product>
         <Description>Common domain operations for setting API.</Description>
@@ -24,14 +23,6 @@
         <IncludeSymbols>true</IncludeSymbols>
         <SymbolPackageFormat>snupkg</SymbolPackageFormat>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <SignAssembly>true</SignAssembly>
-        <AssemblyOriginatorKeyFile>$(snkFilePath)</AssemblyOriginatorKeyFile>
-        <DelaySign>false</DelaySign>
-        <AssemblyVersion>$(majorVersion).0.0.0</AssemblyVersion>
-        <FileVersion>$(majorVersion).0.0.0</FileVersion>
     </PropertyGroup>
 
     <ItemGroup>
@@ -58,7 +49,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="GetcuReone.Cdo" Version="[1.0.5,)" />
+        <PackageReference Include="GetcuReone.Cdo" Version="[1.0.7,)" />
         <PackageReference Include="GetcuReone.config" Version="[1.0.4,)" />
     </ItemGroup>
 

@@ -14,7 +14,7 @@ namespace GetcuReone.Cdo.Settings.Adapters
 
         private static string GetPathFolder()
         {
-            var config = GrConfigManager.Current.Settings[GrConfigKeys.Settings.SettingsFolder];
+            var config = GrConfigManager.Current.Sections[GrConfigKeys.Settings.Name].Configs[GrConfigKeys.Settings.SettingsFolder];
             if (config == null)
                 throw CdiHelper.CreateException(SettingsErrorCode.InvalidConfig, $"The GetcuReone.config does not contain config '{GrConfigKeys.Settings.SettingsFolder}'.");
 

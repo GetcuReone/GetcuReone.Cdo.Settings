@@ -1,17 +1,13 @@
-﻿using GetcuReone.Cdi;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using System.Threading;
+using GetcuReone.ComboPatterns.Facade;
 
 namespace GetcuReone.Cdo.Settings.Facades
 {
-    internal sealed class LockerFacade : GrFacadeBase
+    internal sealed class LockerFacade : FacadeBase
     {
         private static readonly Dictionary<string, object> _lockers = new Dictionary<string, object>();
         private static readonly List<string> _blockKeys = new List<string>();
-
-        protected override string FacadeName => nameof(LockerFacade);
 
         public object GetLocker(string key)
         {

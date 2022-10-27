@@ -17,6 +17,10 @@ namespace GetcuReone.Cdo.Settings.Facades
         /// <inheritdoc/>
         protected override string FacadeName => nameof(SettingContextFacade);
 
+        /// <summary>
+        /// Get all types of settings.
+        /// </summary>
+        /// <returns>Setting types.</returns>
         public List<SettingType> GetSettingTypes()
         {
             var settingTypeConfig = GrConfigManager.Current.Sections[GrConfigKeys.Settings.Name].Configs[GrConfigKeys.Settings.SettingTypesFile];
@@ -74,6 +78,10 @@ namespace GetcuReone.Cdo.Settings.Facades
             return result;
         }
 
+        /// <summary>
+        /// Get default setting types.
+        /// </summary>
+        /// <returns>Setting types.</returns>
         public List<SettingType> GetDefaultSettingTypes()
         {
             return new List<SettingType>
@@ -85,6 +93,11 @@ namespace GetcuReone.Cdo.Settings.Facades
             };
         }
 
+        /// <summary>
+        /// Loading settings.
+        /// </summary>
+        /// <param name="blockFiles">True - lock setting files.</param>
+        /// <returns>Setting ontexts from files</returns>
         public IEnumerable<KeyValuePair<string, SettingContext>> LoadSettingContext(bool blockFiles = false)
         {
             var templateFileConfig = GrConfigManager.Current.Sections[GrConfigKeys.Settings.Name].Configs[GrConfigKeys.Settings.TemplateSettingFile];
@@ -123,6 +136,11 @@ namespace GetcuReone.Cdo.Settings.Facades
             }
         }
 
+        /// <summary>
+        /// Get setting context.
+        /// </summary>
+        /// <param name="loadNamespace">True - load include namespace.</param>
+        /// <returns></returns>
         public SettingContext GetSettingContext(bool loadNamespace = false)
         {
             SettingContext result = null;

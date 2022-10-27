@@ -1,16 +1,14 @@
 ﻿using GetcuReone.Cdi;
 using GetcuReone.Cdm.Configuration.Settings;
 using GetcuReone.Cdm.Errors;
+using GetcuReone.ComboPatterns.Facade;
 using System.Collections.Generic;
 using System.Linq;
 
 namespace GetcuReone.Cdo.Settings.Facades
 {
-    internal sealed class SettingNamespaceFacade : GrFacadeBase
+    internal sealed class SettingNamespaceFacade : FacadeBase
     {
-        /// <inheritdoc/>
-        protected override string FacadeName => nameof(SettingNamespaceFacade);
-
         public List<SettingNamespace> GetSettingNamespaces(IEnumerable<string> namespaceCodes)
         {
             Dictionary<string, bool> codes = namespaceCodes

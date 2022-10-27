@@ -1,15 +1,15 @@
-﻿using GetcuReone.Cdi;
-using GetcuReone.Cdm.Configuration.Settings;
-using GetcuReone.Cdm.Errors;
-using GetcuReone.Cdo.File;
-using GetcuReone.Cdo.Helpers;
-using GetcuReone.Cdo.Settings.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using GetcuReone.Cdi;
+using GetcuReone.Cdm.Configuration.Settings;
+using GetcuReone.Cdm.Errors;
+using GetcuReone.Cdo.File;
+using GetcuReone.Cdo.Helpers;
+using GetcuReone.Cdo.Settings.Entities;
 
 namespace GetcuReone.Cdo.Settings.Facades
 {

@@ -15,10 +15,19 @@
         /// </summary>
         public string Value { get; set; }
 
+        /// <summary>
+        /// True - set default value.
+        /// </summary>
         internal bool NeedSetDefaultValue { get; set; }
 
+        /// <summary>
+        /// True - check setting type
+        /// </summary>
         internal bool CheckSettingType { get; set; }
 
+        /// <summary>
+        /// Settings type.
+        /// </summary>
         internal string SettingType { get; set; }
     }
 }

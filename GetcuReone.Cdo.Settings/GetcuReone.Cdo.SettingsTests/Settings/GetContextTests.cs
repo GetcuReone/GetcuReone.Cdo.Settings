@@ -1,7 +1,4 @@
-﻿using GetcuReone.Cdm.Errors;
-using GetcuReone.Cdo.Settings;
-using GetcuReone.Cdo.Settings.TestCommon;
-using GetcuReone.Cdo.SettingsTests.Env;
+﻿using GetcuReone.Cdo.SettingsTests.Env;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -14,7 +11,7 @@ namespace GetcuReone.Cdo.SettingsTests.Settings
         [TestMethod]
         [TestCategory(GetcuReoneTC.Unit)]
         [Description("Get setting context without namespaces.")]
-        [Timeout(Timeouts.Second.One)]
+        [Timeout(Timeouts.Second.Five)]
         public void GetContextWithoutNamespacesTestCase()
         {
             const string name = "Setting";

@@ -11,8 +11,9 @@
         <RepositoryUrl>https://github.com/GetcuReone/GetcuReone.Cdo.Settings</RepositoryUrl>
         <RepositoryType>git</RepositoryType>
         <PackageTags>getcureone cdo settings</PackageTags>
-        <PackageReleaseNotes>Changes:
-        - fix assembly version 
+        <PackageReleaseNotes>
+            Changes:
+            - remove logging from libraries
         </PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageProjectUrl>https://github.com/GetcuReone/GetcuReone.Cdo.Settings</PackageProjectUrl>
@@ -49,8 +50,8 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="GetcuReone.Cdo" Version="[2.0.0,)" />
-        <PackageReference Include="GetcuReone.config" Version="[2.0.0,)" />
+        <PackageReference Include="GetcuReone.Cdo" Version="2.0.1" />
+        <PackageReference Include="GetcuReone.config" Version="2.0.0" />
     </ItemGroup>
 
 </Project>

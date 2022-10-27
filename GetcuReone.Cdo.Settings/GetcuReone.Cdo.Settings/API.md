@@ -489,7 +489,7 @@ This method has no parameters.
 
 ##### Summary
 
-Get setting context
+Get setting context.
 
 ##### Returns
 
@@ -499,7 +499,7 @@ Get setting context
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| loadNamespace | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | True - load include namespace |
+| loadNamespace | [System.Boolean](http://msdn.microsoft.com/query/dev14.query?appId=Dev14IDEF1&l=EN-US&k=k:System.Boolean 'System.Boolean') | True - load include namespace. |
 
 <a name='M-GetcuReone-Cdo-Settings-Facades-SettingContextFacade-GetSettingTypes'></a>
 ### GetSettingTypes() `method`

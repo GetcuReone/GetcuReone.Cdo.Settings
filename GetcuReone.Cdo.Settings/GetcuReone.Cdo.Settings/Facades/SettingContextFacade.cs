@@ -137,9 +137,9 @@ namespace GetcuReone.Cdo.Settings.Facades
         }
 
         /// <summary>
-        /// Get setting context
+        /// Get setting context.
         /// </summary>
-        /// <param name="loadNamespace">True - load include namespace</param>
+        /// <param name="loadNamespace">True - load include namespace.</param>
         /// <returns></returns>
         public SettingContext GetSettingContext(bool loadNamespace = false)
         {

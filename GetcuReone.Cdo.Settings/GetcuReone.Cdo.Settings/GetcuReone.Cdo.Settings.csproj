@@ -14,7 +14,7 @@
         <PackageReleaseNotes>
             Changes:
             - remove logging from libraries
-            - support for changes in the GetcuReone.Cdo.2.0.2 library
+            - support for changes in the GetcuReone.Cdo.2.0.3 library
         </PackageReleaseNotes>
         <PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
         <PackageProjectUrl>https://github.com/GetcuReone/GetcuReone.Cdo.Settings</PackageProjectUrl>
@@ -51,7 +51,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="GetcuReone.Cdo" Version="2.0.2" />
+        <PackageReference Include="GetcuReone.Cdo" Version="2.0.3" />
         <PackageReference Include="GetcuReone.config" Version="2.0.0" />
     </ItemGroup>
 

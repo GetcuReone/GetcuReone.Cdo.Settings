@@ -1,4 +1,4 @@
-﻿using GetcuReone.Cdi;
+﻿using GetcuReone.Cdi.Extensions;
 using GetcuReone.Cdm.Errors;
 using GetcuReone.GwtTestFramework.Entities;
 using Microsoft.VisualStudio.TestTools.UnitTesting;

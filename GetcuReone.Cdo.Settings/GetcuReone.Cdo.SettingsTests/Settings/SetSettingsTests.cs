@@ -22,7 +22,7 @@ namespace GetcuReone.Cdo.SettingsTests.Settings
         [TestMethod]
         [TestCategory(GetcuReoneTC.Unit)]
         [Description("Set settings.")]
-        [Timeout(Timeouts.Second.One)]
+        [Timeout(Timeouts.Second.Five)]
         public void SetSettingsTestCase()
         {
             var settingCodes = new Dictionary<string, string>

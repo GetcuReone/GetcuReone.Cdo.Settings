@@ -1,4 +1,5 @@
 ﻿using GetcuReone.Cdi;
+using GetcuReone.Cdi.Extensions;
 using GetcuReone.Cdm.Configuration.Settings;
 using GetcuReone.Cdo.Configuration;
 using GetcuReone.Cdo.File;
@@ -12,7 +13,7 @@ namespace GetcuReone.Cdo.Settings.Facades
     /// <summary>
     /// Facade for work with <see cref="SettingContext"/>.
     /// </summary>
-    internal sealed class SettingContextFacade : GrFacadeBase
+    internal sealed class SettingContextFacade : BaseGrFacade
     {
         /// <inheritdoc/>
         protected override string FacadeName => nameof(SettingContextFacade);
@@ -78,10 +79,12 @@ namespace GetcuReone.Cdo.Settings.Facades
             return result;
         }
 
+
         /// <summary>
         /// Get default setting types.
         /// </summary>
         /// <returns>Setting types.</returns>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Performance", "CA1822:Mark members as static", Justification = "<Pending>")]
         public List<SettingType> GetDefaultSettingTypes()
         {
             return new List<SettingType>

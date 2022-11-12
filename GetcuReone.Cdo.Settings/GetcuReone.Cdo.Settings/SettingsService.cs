@@ -1,4 +1,5 @@
 ﻿using GetcuReone.Cdi;
+using GetcuReone.Cdi.Extensions;
 using GetcuReone.Cdm.Configuration.Settings;
 using GetcuReone.Cdm.Configuration.Settings.Enums;
 using GetcuReone.Cdo.Settings.Entities;
@@ -13,7 +14,7 @@ namespace GetcuReone.Cdo.Settings
     /// <summary>
     /// Service for working with settings.
     /// </summary>
-    public class SettingsService : GrFactoryBase, ISettings
+    public class SettingsService : BaseGrFactory, ISettings
     {
         /// <inheritdoc/>
         protected override string FactoryName => nameof(SettingsService);
@@ -43,8 +44,9 @@ namespace GetcuReone.Cdo.Settings
         /// <inheritdoc/>
         public virtual SettingNamespace GetNamespace(string namespaceCode)
         {
-            CallMethodLogging(parameter: namespaceCode);
-            return ReturnNotLogging(GetFacade<SettingNamespaceFacade>().GetSettingNamespaces(new List<string>(1) { namespaceCode }).Single());
+            return GetFacade<SettingNamespaceFacade>()
+                .GetSettingNamespaces(new List<string>(1) { namespaceCode })
+                .Single();
         }
 
         /// <inheritdoc/>
@@ -61,62 +63,53 @@ namespace GetcuReone.Cdo.Settings
         /// <inheritdoc/>
         public virtual Setting GetSetting(string settingFullCode)
         {
-            CallMethodLogging(parameter: settingFullCode);
-            return ReturnLogging(
-                GetFacade<SettingsFacade>().GetSettins(new List<string>(1) { settingFullCode }).Single());
+            return GetFacade<SettingsFacade>()
+                .GetSettins(new List<string>(1) { settingFullCode })
+                .Single();
         }
 
         /// <inheritdoc/>
         public virtual SettingContext GetContext(bool loadNamespaces)
         {
-            CallMethodLogging(loadNamespaces);
-            return ReturnNotLogging(
-                GetFacade<SettingContextFacade>().GetSettingContext(loadNamespaces));
+            return GetFacade<SettingContextFacade>().GetSettingContext(loadNamespaces);
         }
 
         /// <inheritdoc/>
         public virtual List<SettingNamespace> GetNamespaces(IEnumerable<string> namespaceCodes)
         {
-            CallMethodLogging(namespaceCodes);
-            return ReturnNotLogging(GetFacade<SettingNamespaceFacade>().GetSettingNamespaces(namespaceCodes));
+            return GetFacade<SettingNamespaceFacade>().GetSettingNamespaces(namespaceCodes);
         }
 
         /// <inheritdoc/>
         public virtual List<Setting> GetSettings(IEnumerable<string> settingFullCodes)
         {
-            CallMethodLogging(settingFullCodes);
-            return ReturnLogging(
-                GetFacade<SettingsFacade>().GetSettins(settingFullCodes));
+            return GetFacade<SettingsFacade>().GetSettins(settingFullCodes);
         }
 
         /// <inheritdoc/>
         public virtual SettingType GetSettingType(string settingTypeCode)
         {
-            CallMethodLogging(parameter: settingTypeCode);
-            var types = GetFacade<SettingContextFacade>().GetSettingTypes();
-            return ReturnLogging(types.SingleType(settingTypeCode));
+            List<SettingType> types = GetFacade<SettingContextFacade>().GetSettingTypes();
+
+            return types.SingleType(settingTypeCode);
         }
 
         /// <inheritdoc/>
         public virtual List<SettingType> GetSettingTypes(IEnumerable<string> settingTypeCodes)
         {
-            CallMethodLogging(settingTypeCodes);
-
-            var types = GetFacade<SettingContextFacade>().GetSettingTypes();
-            var resilt = new List<SettingType>(settingTypeCodes.Count());
+            List<SettingType> resilt = new List<SettingType>(settingTypeCodes.Count());
+            List<SettingType> types = GetFacade<SettingContextFacade>().GetSettingTypes();
 
             foreach (var code in settingTypeCodes)
                 resilt.Add(types.SingleType(code));
 
-            return ReturnLogging(resilt);
+            return resilt;
         }
 
         /// <inheritdoc/>
         public virtual List<SettingType> GetSettingTypes()
         {
-            CallMethodLogging();
-
-            return ReturnLogging(GetFacade<SettingContextFacade>().GetSettingTypes());
+            return GetFacade<SettingContextFacade>().GetSettingTypes();
         }
 
         /// <inheritdoc/>
@@ -188,11 +181,7 @@ namespace GetcuReone.Cdo.Settings
         /// <inheritdoc/>
         public virtual void SetSettings(List<SetSettingsRequest> request)
         {
-            CallMethodLogging(request);
-
             GetFacade<SettingsFacade>().SetSettings(request);
-
-            NLogger.Info(() => "Set settings:\n" + string.Join("\n", request.ConvertAll(setting => $"Code <{setting.FullCode}>, Value <{setting.Value}>")));
         }
 
         /// <inheritdoc/>
@@ -209,9 +198,9 @@ namespace GetcuReone.Cdo.Settings
         /// <inheritdoc/>
         public virtual void SetDefaultSettings(IEnumerable<string> settingFullCodes)
         {
-            CallMethodLogging(settingFullCodes);
-            GetFacade<SettingsFacade>().SetSettings(settingFullCodes.Select(code => new SetSettingsRequest { FullCode = code, NeedSetDefaultValue = true }).ToList());
-            NLogger.Info(() => "Set default settings:\n" + string.Join("\n", settingFullCodes));
+            GetFacade<SettingsFacade>()
+                .SetSettings(settingFullCodes.Select(code => new SetSettingsRequest { FullCode = code, NeedSetDefaultValue = true })
+                .ToList());
         }
 
         /// <inheritdoc/>

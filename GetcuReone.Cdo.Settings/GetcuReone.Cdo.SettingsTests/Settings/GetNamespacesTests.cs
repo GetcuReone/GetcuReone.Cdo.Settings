@@ -1,4 +1,4 @@
-﻿using GetcuReone.Cdi;
+﻿using GetcuReone.Cdi.Extensions;
 using GetcuReone.Cdo.SettingsTests.Env;
 using GetcuReone.GetcuTestAdapter;
 using GetcuReone.GwtTestFramework.Helpers;

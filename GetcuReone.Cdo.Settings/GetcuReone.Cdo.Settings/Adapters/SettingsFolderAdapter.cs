@@ -4,7 +4,7 @@ using GetcuReone.Cdo.Folder;
 
 namespace GetcuReone.Cdo.Settings.Adapters
 {
-    internal sealed class SettingsFolderAdapter : FolderAdapterBase
+    internal sealed class SettingsFolderAdapter : BaseFolderAdapter
     {
         public SettingsFolderAdapter() : base(GetPathFolder()) { }
 

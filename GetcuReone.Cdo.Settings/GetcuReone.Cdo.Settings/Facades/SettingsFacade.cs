@@ -1,22 +1,23 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using GetcuReone.Cdi;
+﻿using GetcuReone.Cdi;
+using GetcuReone.Cdi.Extensions;
 using GetcuReone.Cdm.Configuration.Settings;
 using GetcuReone.Cdm.Errors;
 using GetcuReone.Cdo.File;
 using GetcuReone.Cdo.Helpers;
 using GetcuReone.Cdo.Settings.Entities;
+using System.Collections.Generic;
+using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
 
 namespace GetcuReone.Cdo.Settings.Facades
 {
     /// <summary>
     /// Facade for settings.
     /// </summary>
-    internal sealed class SettingsFacade : GrFacadeBase
+    internal sealed class SettingsFacade : BaseGrFacade
     {
         /// <inheritdoc/>
         protected override string FacadeName => nameof(SettingsFacade);

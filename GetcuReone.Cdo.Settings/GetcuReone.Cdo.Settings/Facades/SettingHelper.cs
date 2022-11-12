@@ -1,4 +1,5 @@
 ﻿using GetcuReone.Cdi;
+using GetcuReone.Cdi.Extensions;
 using GetcuReone.Cdm.Configuration.Settings;
 using System.Collections.Generic;
 using System.Linq;

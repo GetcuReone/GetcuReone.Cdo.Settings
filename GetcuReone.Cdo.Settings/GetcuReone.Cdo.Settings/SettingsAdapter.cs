@@ -10,7 +10,7 @@ namespace GetcuReone.Cdo.Settings
     /// <summary>
     /// Adapter for <see cref="ISettings"/>.
     /// </summary>
-    public class SettingsAdapter : GrAdapterProxyBase<ISettings>
+    public class SettingsAdapter : BaseGrAdapterProxy<ISettings>
     {
         /// <inheritdoc/>
         protected override string AdapterName => nameof(SettingsAdapter);
@@ -18,10 +18,7 @@ namespace GetcuReone.Cdo.Settings
         /// <summary>
         /// Constructor.
         /// </summary>
-        public SettingsAdapter() : base(() => new SettingsService())
-        {
-
-        }
+        public SettingsAdapter() : base(() => new SettingsService()) { }
 
         /// <summary>
         /// Get setting types by codes.

@@ -3,7 +3,7 @@
 
     <!-- Live documentation settings-->
     <PropertyGroup>
-        <DocumentationFile>GetcuReone.$(MSBuildProjectName).xml</DocumentationFile>
+        <DocumentationFile>$(MSBuildProjectName).xml</DocumentationFile>
         <DocumentationMarkdown>$(MSBuildProjectDirectory)\API.md</DocumentationMarkdown>
     </PropertyGroup>
 

@@ -5,7 +5,6 @@
     <Import Project="$(MSBuildThisFileDirectory)\getcureone-documentation.props"/>
 
     <PropertyGroup>
-        <DocumentationFile>$(MSBuildProjectName).xml</DocumentationFile>
         <VsxmdAutoDeleteXml>True</VsxmdAutoDeleteXml>
     </PropertyGroup>
 
